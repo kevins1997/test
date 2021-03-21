@@ -17,15 +17,15 @@ class UsersSeeder extends Seeder
         $users = [
             [
                 'name' => 'Admin',
-                'email' => 'admin@email.com',
-                'password' => bcrypt('secret'),
+                'email' => 'admin@commit.com',
+                'password' => bcrypt('password'),
                 'role_id' => '1',
                 'remember_token' => null,
             ],
             [
                 'name' => 'User',
-                'email' => 'user@email.com',
-                'password' => bcrypt('secret'),
+                'email' => 'user@commit.com',
+                'password' => bcrypt('password'),
                 'role_id' => '2',
                 'remember_token' => null,
             ]

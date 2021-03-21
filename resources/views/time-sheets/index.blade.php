@@ -6,18 +6,21 @@
             <div class="row">
                 <div class="form-group col-2">
                     <strong>Date From</strong>
-                    <input class="form-control mr-2" value="{{request()->get('date_from')}}" type="date" id="date_from" name="date_from"/>
+                    <input class="form-control mr-2" value="{{request()->get('date_from')}}" type="date" id="date_from"
+                           name="date_from"/>
                 </div>
                 <div class="form-group col-2">
                     <strong>Date To</strong>
-                    <input class="form-control" value="{{request()->get('date_to')}}" type="date" id="date_to" name="date_to"/>
+                    <input class="form-control" value="{{request()->get('date_to')}}" type="date" id="date_to"
+                           name="date_to"/>
                 </div>
                 <div class="form-group col-3">
                     <strong>Choose a Project:</strong>
                     <select style="width: 100%" class="form-control" id="project-select" name="project_id">
                         <option value="0">Select</option>
                         @foreach($projects as $project)
-                            <option {{request()->project_id == $project->id ? 'selected' : ''}} value="{{ $project->id }}">{{ $project->title }}</option>
+                            <option
+                                {{request()->project_id == $project->id ? 'selected' : ''}} value="{{ $project->id }}">{{ $project->title }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -27,7 +30,9 @@
                         <option value="0">Select</option>
                         @foreach($projects as $project)
                             @foreach($project->activityTypes as $activityType)
-                                <option {{request()->activity_type_id == $activityType->id ? 'selected' : ''}} {{request()->project_id == $project->id ? '' : 'hidden'}} class="activities-for-project activities-for-project-{{$project->id}}" value="{{ $activityType->id }}">{{ $activityType->title }}</option>
+                                <option
+                                    {{request()->activity_type_id == $activityType->id ? 'selected' : ''}} {{request()->project_id == $project->id ? '' : 'hidden'}} class="activities-for-project activities-for-project-{{$project->id}}"
+                                    value="{{ $activityType->id }}">{{ $activityType->title }}</option>
                             @endforeach
                         @endforeach
                     </select>
@@ -38,13 +43,14 @@
                         <select style="width: 100%" class="form-control" id="user-select" name="user_id">
                             <option value="0">Select</option>
                             @foreach($users as $user)
-                                <option {{ request()->user_id == $user->id ? 'selected' : '' }} value="{{$user->id}}">{{$user->name}}</option>
+                                <option
+                                    {{ request()->user_id == $user->id ? 'selected' : '' }} value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
                         </select>
                     </div>
                 @endif
             </div>
-            <button type="submit" class="btn btn-info">Search</button>
+            <button type="submit" class="btn btn-info mr-2">Search</button>
             <button class="btn btn-warning" id="clear-form">Clear</button>
         </form>
 
@@ -53,7 +59,7 @@
                 <a href="{{ route('time-sheets.create') }}" class="btn btn-primary mb-2">Create Time Sheet</a>
             </div>
         @endif
-        <table class="table table-bordered mb-5">
+        <table class="table table-bordered mb-5 mt-3">
             <thead>
             <tr class="table-success">
                 <th scope="col">#</th>

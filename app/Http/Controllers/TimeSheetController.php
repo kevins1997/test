@@ -24,7 +24,7 @@ class TimeSheetController extends Controller
         $query = TimeSheet::with('activityType', 'project', 'user');
         $users = User::query()->where('role_id', 2)->get();
         $projects = Project::with('activityTypes')->get();
-        if (! $user->isAdmin()) {
+        if (!$user->isAdmin()) {
             $query->where('user_id', $user->id);
             $projects = $user->projects()->with('activityTypes')->get();
             $users = [];
@@ -55,12 +55,12 @@ class TimeSheetController extends Controller
     public function store(TimesheetRequest $request)
     {
         $timeSheetData = [
-           'date' => $request->date,
-           'hours' => $request->hours,
-           'description' => $request->description,
-           'user_id' => auth()->id(),
-           'project_id' => $request->project_id,
-           'activity_type_id' => $request->activity_type_id
+            'date' => $request->date,
+            'hours' => $request->hours,
+            'description' => $request->description,
+            'user_id' => auth()->id(),
+            'project_id' => $request->project_id,
+            'activity_type_id' => $request->activity_type_id
         ];
         TimeSheet::create($timeSheetData);
 
@@ -115,24 +115,29 @@ class TimeSheetController extends Controller
         return redirect()->route('time-sheets.index');
     }
 
-    public function filter(){
+    public function filter()
+    {
         $user = auth()->user();
         $query = TimeSheet::with('activityType', 'project', 'user');
         $users = User::query()->where('role_id', 2)->get();
 
         $projects = Project::with('activityTypes')->get();
-        if (! $user->isAdmin()) {
+        if (!$user->isAdmin()) {
             $users = [];
             $query->where('user_id', $user->id);
             $projects = $user->projects()->with('activityTypes')->get();
         }
 
-        if (request()->get('date_from') && request()->get('date_to')){
+        if (request()->get('date_from') && request()->get('date_to')) {
             $query->whereBetween('date', [request()->date_from, request()->date_to])->get();
-        } else if (request()->get('date_to')){
-            $query->whereDate('date', '<=', request()->date_to);
-        } else if (request()->get('date_from')) {
-            $query->whereDate('date', '>=', request()->date_from);
+        } else {
+            if (request()->get('date_to')) {
+                $query->whereDate('date', '<=', request()->date_to);
+            } else {
+                if (request()->get('date_from')) {
+                    $query->whereDate('date', '>=', request()->date_from);
+                }
+            }
         }
         if (request()->get('user_id') && $user->isAdmin()) {
             $query->where('user_id', request()->user_id);

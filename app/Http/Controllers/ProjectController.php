@@ -6,6 +6,7 @@ use App\Http\Requests\ProjectRequest;
 use App\Models\ActivityType;
 use App\Models\Project;
 use App\Models\User;
+use App\Repositories\ProjectRepository;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,13 +16,23 @@ use Illuminate\Http\Response;
 class ProjectController extends Controller
 {
     /**
+     * @var ProjectRepository
+     */
+    private $projectRepository;
+
+    public function __construct(ProjectRepository $projectRepository)
+    {
+        $this->projectRepository = $projectRepository;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return Factory|View
      */
     public function index()
     {
-        $projects = Project::paginate(10);
+        $projects = $this->projectRepository->index();
         return view('projects.index', compact('projects'));
     }
 

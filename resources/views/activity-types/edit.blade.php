@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-8 margin-tb">
-            <div class="pull-left">
+            <div class="col-xs-10 col-sm-10 col-md-10 offset-xs-4 offset-sm-4 offset-md-3">
                 <h2>Edit Activity Type</h2>
             </div>
         </div>

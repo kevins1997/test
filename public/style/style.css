@@ -1,0 +1,32 @@
+.td-width-4 {
+    max-width: 4rem !important;
+}
+
+.td-width-5 {
+    max-width: 5rem !important;
+}
+
+.help-is-danger {
+    font-size: 14px;
+    color: red;
+}
+
+.is-danger{
+    border: 1px solid red
+}
+
+.link-decoration {
+    text-decoration: none !important;
+    color: #7f7f98 !important;
+    font-size: 16px !important;
+}
+
+body {
+    background: #e8cbc0;
+    background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+    background: linear-gradient(to right, #e8cbc0, #636fa4);
+}
+
+.break-word{
+    word-break: break-all;
+}

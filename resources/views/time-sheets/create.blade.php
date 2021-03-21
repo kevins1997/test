@@ -27,7 +27,8 @@
                     <option>Select</option>
                     @foreach($projects as $project)
                         @foreach($project->activityTypes as $activityType)
-                            <option hidden class="activities-for-project activities-for-project-{{$project->id}}" value="{{ $activityType->id }}">{{ $activityType->title }}</option>
+                            <option hidden class="activities-for-project activities-for-project-{{$project->id}}"
+                                    value="{{ $activityType->id }}">{{ $activityType->title }}</option>
                         @endforeach
                     @endforeach
                 </select>
@@ -68,7 +69,7 @@
 @endsection
 @section('scripts')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#project-select').on('change', function () {
                 const selectedProjectId = $(this).val();
                 $('.activities-for-project').attr('hidden', true);
