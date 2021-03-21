@@ -137,14 +137,14 @@ class TimeSheetController extends Controller
         if (request()->get('user_id') && $user->isAdmin()) {
             $query->where('user_id', request()->user_id);
         }
-        if (request()->get('project_id')) {
-            $query->where('project_id', request()->project_id);
-        }
         if (request()->get('activity_type_id')) {
             $query->where('activity_type_id', request()->activity_type_id);
         }
+        if (request()->get('project_id')) {
+            $query->where('project_id', request()->project_id);
+        }
         $timeSheets = $query->paginate(10);
-        
+
         return view('time-sheets.index', compact('timeSheets', 'projects', 'users'));
     }
 }
