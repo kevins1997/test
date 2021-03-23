@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container mt-5">
-        @if(!auth()->user()->isAdmin())
+        @if(auth()->user()->isAdmin())
             <div>
                 <a href="{{ route('users.create') }}" class="btn btn-primary mb-2">Create User</a>
             </div>
